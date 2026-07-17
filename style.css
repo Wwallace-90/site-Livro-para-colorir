@@ -60,6 +60,20 @@ a{ text-decoration:none; color:inherit; }
 }
 
 /* =========================================================
+   BANNER DO SITE
+========================================================= */
+.site-banner{
+  max-width:1400px;
+  margin:0 auto;
+  padding:18px 24px 0;
+}
+.site-banner img{
+  width:100%;
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-soft);
+}
+
+/* =========================================================
    HERO
 ========================================================= */
 .hero{
@@ -136,15 +150,13 @@ a{ text-decoration:none; color:inherit; }
 .micro-trust{ font-size:.82rem; color:var(--ink-soft); margin-top:8px; }
 
 .hero-art{ position:relative; display:flex; justify-content:center; }
-.polaroid{
-  background:var(--cream-card);
-  padding:14px 14px 22px;
-  border-radius:20px;
-  box-shadow:var(--shadow-soft);
-  max-width:380px;
-  transform:rotate(-2deg);
+.book-3d{
+  max-width:420px;
+  filter:drop-shadow(0 22px 30px rgba(74,61,51,.22));
+  transition:transform .4s ease;
 }
-.polaroid img{ border-radius:12px; }
+.book-3d:hover{ transform:translateY(-4px) rotate(-1deg); }
+.book-3d img{ border-radius:8px; }
 .sticker{
   position:absolute;
   background:var(--rose);
