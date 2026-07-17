@@ -9,7 +9,7 @@ const CONFIG = {
   // ---------- PRODUTO ----------
   productName: "Jardim das Suculentas Fofinhas",
   price: "R$14,90",          // preço exibido na barra móvel, botão flutuante etc.
-  checkoutUrl: "#comprar",   // troque por seu link de checkout real (ex: Hotmart, Kiwify...)
+  checkoutUrl: "https://pay.kiwify.com.br/TtftuU6",   // troque por seu link de checkout real (ex: Hotmart, Kiwify...)
 
   // ---------- CONTADOR REGRESSIVO ----------
   countdown: {
