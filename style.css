@@ -237,12 +237,21 @@ a{ text-decoration:none; color:inherit; }
 
 /* SHOWCASE */
 .showcase{ background:var(--paper-soft); }
+.showcase-gallery{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
+  max-width:720px;
+  margin:0 auto 26px;
+}
 .showcase-frame{
-  max-width:420px; margin:0 auto 26px;
   border-radius:var(--radius-lg);
   overflow:hidden;
   box-shadow:var(--shadow-soft);
   border:6px solid var(--cream-card);
+}
+@media (max-width:600px){
+  .showcase-gallery{ grid-template-columns:1fr; max-width:340px; }
 }
 .showcase-tags{
   display:flex; flex-wrap:wrap; justify-content:center; gap:10px;
