@@ -57,19 +57,40 @@
   </svg>
 </header>
 
-<!-- ============ CONTADOR ============ -->
+<!-- ============ CONTADOR / URGÊNCIA ============ -->
 <section class="countdown-section" id="countdown-section">
   <div class="countdown-inner">
-    <p class="countdown-label" id="countdown-label">Oferta Especial</p>
+
+    <!-- Cabeçalho persuasivo (texto configurável em CONFIG.countdown.label no script.js) -->
+    <p class="countdown-label" id="countdown-label">🚨 Esta oferta exclusiva expira em:</p>
+
+    <!-- Caixas do cronômetro: apenas Horas / Minutos / Segundos -->
     <div class="countdown-grid" id="countdown-grid">
-      <div class="countdown-unit"><span id="cd-days">00</span><small>Dias</small></div>
+      <div class="countdown-unit">
+        <span id="cd-hours">00</span>
+        <small>Horas</small>
+      </div>
       <div class="countdown-sep">:</div>
-      <div class="countdown-unit"><span id="cd-hours">00</span><small>Horas</small></div>
+      <div class="countdown-unit">
+        <span id="cd-minutes">00</span>
+        <small>Minutos</small>
+      </div>
       <div class="countdown-sep">:</div>
-      <div class="countdown-unit"><span id="cd-minutes">00</span><small>Minutos</small></div>
-      <div class="countdown-sep">:</div>
-      <div class="countdown-unit"><span id="cd-seconds">00</span><small>Segundos</small></div>
+      <div class="countdown-unit">
+        <span id="cd-seconds">00</span>
+        <small>Segundos</small>
+      </div>
     </div>
+
+    <!-- Âncora de preço + CTA logo abaixo do timer -->
+    <div class="countdown-offer">
+      <span class="countdown-price">
+        <span class="price-old">de R$29,90</span>
+        <span class="price-new">por apenas R$14,90</span>
+      </span>
+      <a href="#" class="btn btn-primary btn-hero" id="cta-countdown">🌿 Quero Meu Livro Agora</a>
+    </div>
+
   </div>
 </section>
 
