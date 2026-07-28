@@ -9,14 +9,23 @@ const CONFIG = {
   // ---------- PRODUTO ----------
   productName: "Jardim das Suculentas Fofinhas",
   price: "R$14,90",          // preço exibido na barra móvel, botão flutuante etc.
-  checkoutUrl: "https://pay.kiwify.com.br/TtftuU6",   // troque por seu link de checkout real (ex: Hotmart, Kiwify...)
+  checkoutUrl: "#comprar",   // troque por seu link de checkout real (ex: Hotmart, Kiwify...)
 
-  // ---------- CONTADOR REGRESSIVO ----------
+  // ---------- CONTADOR REGRESSIVO (URGÊNCIA) ----------
   countdown: {
-    enabled: true,           // true = mostra o contador / false = esconde a seção inteira
-    label: "Oferta Especial",
-    durationHours: 24,       // quantas horas a partir de agora o contador vai rodar
-    // Alternativa: defina uma data fixa (formato ISO) e comente 'durationHours' se preferir.
+    enabled: true,            // true = mostra o contador / false = esconde a seção inteira
+    label: "🚨 Esta oferta exclusiva expira em:",  // texto de cabeçalho acima do timer
+
+    // Duração do ciclo de urgência em MINUTOS (ex: 15 ou 20 min = urgência curta e real).
+    durationMinutes: 15,
+
+    // Se true, quando o tempo chegar a zero o contador reinicia automaticamente
+    // (mantém a sensação de urgência em vez de travar em 00:00:00).
+    // Se false, o contador para em 00:00:00 ao final da contagem.
+    loop: true,
+
+    // Alternativa: defina uma data/hora fixa (formato ISO) para todo mundo ver o mesmo prazo.
+    // Se usar fixedEndDate, o 'loop' é ignorado (data fixa não reinicia).
     // fixedEndDate: "2026-07-20T23:59:59"
   },
 
@@ -64,7 +73,7 @@ function applyProductConfig() {
   document.querySelectorAll(".mbb-title").forEach(el => (el.textContent = CONFIG.productName));
   document.querySelectorAll(".mbb-price").forEach(el => (el.textContent = CONFIG.price));
 
-  ["cta-hero", "cta-final", "mbb-cta"].forEach(id => {
+  ["cta-hero", "cta-final", "cta-countdown", "mbb-cta"].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.setAttribute("href", CONFIG.checkoutUrl);
   });
@@ -79,7 +88,7 @@ function applyProductConfig() {
   }
 }
 
-/* ---------- 1. CONTADOR REGRESSIVO ---------- */
+/* ---------- 1. CONTADOR REGRESSIVO (URGÊNCIA) ---------- */
 function initCountdown() {
   const section = document.getElementById("countdown-section");
   if (!CONFIG.countdown.enabled) {
@@ -90,14 +99,13 @@ function initCountdown() {
   const labelEl = document.getElementById("countdown-label");
   if (labelEl) labelEl.textContent = CONFIG.countdown.label;
 
-  let endTime;
-  if (CONFIG.countdown.fixedEndDate) {
-    endTime = new Date(CONFIG.countdown.fixedEndDate).getTime();
-  } else {
-    endTime = Date.now() + CONFIG.countdown.durationHours * 60 * 60 * 1000;
-  }
+  const cycleMs = CONFIG.countdown.durationMinutes * 60 * 1000;
+  const usesFixedDate = Boolean(CONFIG.countdown.fixedEndDate);
 
-  const elDays = document.getElementById("cd-days");
+  let endTime = usesFixedDate
+    ? new Date(CONFIG.countdown.fixedEndDate).getTime()
+    : Date.now() + cycleMs;
+
   const elHours = document.getElementById("cd-hours");
   const elMinutes = document.getElementById("cd-minutes");
   const elSeconds = document.getElementById("cd-seconds");
@@ -107,21 +115,27 @@ function initCountdown() {
   }
 
   function tick() {
-    const remaining = endTime - Date.now();
+    let remaining = endTime - Date.now();
+
+    // Ciclo de urgência reinicia sozinho ao chegar a zero (se 'loop' estiver ativado
+    // e não houver uma data fixa definida).
     if (remaining <= 0) {
-      elDays.textContent = "00";
-      elHours.textContent = "00";
-      elMinutes.textContent = "00";
-      elSeconds.textContent = "00";
-      clearInterval(timer);
-      return;
+      if (!usesFixedDate && CONFIG.countdown.loop) {
+        endTime = Date.now() + cycleMs;
+        remaining = cycleMs;
+      } else {
+        elHours.textContent = "00";
+        elMinutes.textContent = "00";
+        elSeconds.textContent = "00";
+        clearInterval(timer);
+        return;
+      }
     }
-    const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((remaining / (1000 * 60 * 60)) % 24);
+
+    const hours = Math.floor(remaining / (1000 * 60 * 60));
     const minutes = Math.floor((remaining / (1000 * 60)) % 60);
     const seconds = Math.floor((remaining / 1000) % 60);
 
-    elDays.textContent = pad(days);
     elHours.textContent = pad(hours);
     elMinutes.textContent = pad(minutes);
     elSeconds.textContent = pad(seconds);
