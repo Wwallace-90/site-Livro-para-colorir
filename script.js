@@ -4,12 +4,17 @@
    Altere os valores para ligar/desligar recursos, mudar preço, prazos, etc.
 ========================================================================= */
 
+// ---------- LINK DE CHECKOUT (KIWIFY) ----------
+// Altere APENAS esta linha quando precisar trocar o link de checkout.
+// Todos os botões "Quero Meu Livro Agora" da página usam esta mesma variável.
+const checkoutUrl = "COLE_AQUI_O_LINK_DA_KIWIFY";
+
 const CONFIG = {
 
   // ---------- PRODUTO ----------
   productName: "Jardim das Suculentas Fofinhas",
-  price: "R$14,90",          // preço exibido na barra móvel, botão flutuante etc.
-  checkoutUrl: "https://pay.kiwify.com.br/TtftuU6",   // troque por seu link de checkout real (ex: Hotmart, Kiwify...)
+  price: "R$9,90",           // preço exibido na barra móvel, botão flutuante etc.
+  checkoutUrl: checkoutUrl,  // usa a variável checkoutUrl definida acima
 
   // ---------- CONTADOR REGRESSIVO (URGÊNCIA) ----------
   countdown: {
@@ -75,7 +80,11 @@ function applyProductConfig() {
 
   ["cta-hero", "cta-final", "cta-countdown", "mbb-cta"].forEach(id => {
     const el = document.getElementById(id);
-    if (el) el.setAttribute("href", CONFIG.checkoutUrl);
+    if (el) {
+      el.setAttribute("href", CONFIG.checkoutUrl);
+      el.setAttribute("target", "_blank");        // abre o checkout em uma nova aba
+      el.setAttribute("rel", "noopener noreferrer");
+    }
   });
 
   const floatBtn = document.getElementById("float-buy");
