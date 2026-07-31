@@ -7,7 +7,7 @@
 // ---------- LINK DE CHECKOUT (KIWIFY) ----------
 // Altere APENAS esta linha quando precisar trocar o link de checkout.
 // Todos os botões "Quero Meu Livro Agora" da página usam esta mesma variável.
-const checkoutUrl = "COLE_AQUI_O_LINK_DA_KIWIFY";
+const checkoutUrl = "https://pay.kiwify.com.br/TtftuU6";
 
 const CONFIG = {
 
