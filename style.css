@@ -147,7 +147,6 @@ a{ text-decoration:none; color:inherit; }
 .btn-hero{ padding:16px 30px; font-size:1.02rem; }
 .btn-large{ padding:18px 40px; font-size:1.1rem; }
 
-.micro-trust{ font-size:.82rem; color:var(--ink-soft); margin-top:8px; }
 
 .hero-art{ position:relative; display:flex; justify-content:center; }
 .book-3d{
@@ -264,23 +263,64 @@ a{ text-decoration:none; color:inherit; }
 .section h2{ font-size:clamp(1.7rem, 3vw, 2.2rem); text-align:center; }
 .section-sub{ text-align:center; color:var(--ink-soft); max-width:52ch; margin:0 auto 44px; }
 
-/* BENEFITS */
+/* BENEFITS — checklist premium */
 .benefits{ background:var(--paper); }
-.benefit-grid{
-  display:grid; grid-template-columns:repeat(4,1fr); gap:22px;
+.checklist{
+  list-style:none;
+  margin:0 auto;
+  padding:0;
+  max-width:480px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
 }
-.benefit-card{
+.checklist li{
+  display:flex;
+  align-items:center;
+  gap:14px;
   background:var(--cream-card);
   border-radius:var(--radius-md);
-  padding:28px 22px;
-  text-align:center;
+  padding:16px 22px;
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:1.05rem;
+  color:var(--ink);
   box-shadow:var(--shadow-soft);
-  transition:transform .25s ease, box-shadow .25s ease;
+  transition:transform .2s ease, box-shadow .2s ease;
 }
-.benefit-card:hover{ transform:translateY(-6px); box-shadow:0 18px 34px -14px rgba(74,61,51,.25); }
-.benefit-icon{ font-size:2.1rem; display:block; margin-bottom:10px; }
-.benefit-card h3{ font-size:1.05rem; margin-bottom:6px; }
-.benefit-card p{ font-size:.92rem; color:var(--ink-soft); margin:0; }
+.checklist li:hover{ transform:translateX(4px); box-shadow:0 18px 30px -14px rgba(74,61,51,.22); }
+.check-icon{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:26px; height:26px;
+  border-radius:50%;
+  background:var(--sage-dark);
+  color:#fff;
+  font-size:.8rem;
+  font-weight:700;
+  flex-shrink:0;
+}
+.check-icon-emoji{ font-size:1.2rem; flex-shrink:0; }
+.checklist-price{
+  background:linear-gradient(135deg, var(--sage) 0%, var(--sage-dark) 100%);
+  color:#fff;
+}
+.checklist-price .check-icon{ background:#fff; color:var(--sage-dark); }
+
+/* TRUST BADGES — abaixo dos botões principais de compra */
+.trust-badges{
+  list-style:none;
+  margin:10px 0 0;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  font-size:.85rem;
+  color:var(--ink-soft);
+  font-weight:600;
+}
+.trust-badges-light{ color:rgba(255,255,255,.85); align-items:center; }
 
 /* SHOWCASE */
 .showcase{ background:var(--paper-soft); }
@@ -355,7 +395,6 @@ a{ text-decoration:none; color:inherit; }
 .buy-card .price-new{ color:#fff; }
 .buy-card .btn-primary{ background:#fff; color:var(--sage-dark); }
 .buy-card .btn-primary:hover{ background:#F3ECDE; }
-.buy-card .micro-trust{ color:rgba(255,255,255,.75); }
 
 /* FAQ */
 .faq{ background:var(--paper); }
@@ -461,11 +500,11 @@ a{ text-decoration:none; color:inherit; }
   .hero-bullets{ align-items:center; }
   .price-box{ justify-content:center; }
   .hero-art{ order:-1; }
-  .benefit-grid{ grid-template-columns:repeat(2,1fr); }
+  .trust-badges{ align-items:center; }
   .about-card{ padding:40px 26px; }
 }
 @media (max-width: 480px){
-  .benefit-grid{ grid-template-columns:1fr; }
+  .checklist li{ font-size:.95rem; padding:14px 18px; }
   .countdown-unit{ min-width:52px; padding:8px 10px; }
   .buy-card{ padding:38px 24px; }
 }
