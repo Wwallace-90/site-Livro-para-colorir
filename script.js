@@ -7,7 +7,7 @@
 // ---------- LINK DE CHECKOUT (KIWIFY) ----------
 // Altere APENAS esta linha quando precisar trocar o link de checkout.
 // Todos os botões "Quero Meu Livro Agora" da página usam esta mesma variável.
-const checkoutUrl = "https://app.cakto.com.br/checkout-builder";
+const checkoutUrl = "https://pay.cakto.com.br/363zwev_1024315";
 
 const CONFIG = {
 
